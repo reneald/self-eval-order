@@ -10,20 +10,20 @@ public class Address {
 
     }
 
-    private void setStreetName(String streetName) {
-        this.streetName = streetName;
+    public String getStreetName() {
+        return streetName;
     }
 
-    private void setHouseNumber(String houseNumber) {
-        this.houseNumber = houseNumber;
+    public String getHouseNumber() {
+        return houseNumber;
     }
 
-    private void setPostCode(String postCode) {
-        this.postCode = postCode;
+    public String getPostCode() {
+        return postCode;
     }
 
-    private void setCity(String city) {
-        this.city = city;
+    public String getCity() {
+        return city;
     }
 
     public static class AddressBuilder {
@@ -37,6 +37,11 @@ public class Address {
         }
 
         public Address build() {
+            Address newAddress = new Address();
+            newAddress.streetName = streetName;
+            newAddress.houseNumber = houseNumber;
+            newAddress.postCode = postCode;
+            newAddress.city = city;
             return null;
         }
 
@@ -50,7 +55,7 @@ public class Address {
             return this;
         }
 
-        public AddressBuilder withpostCode(String postCode) {
+        public AddressBuilder withPostCode(String postCode) {
             this.postCode = postCode;
             return this;
         }

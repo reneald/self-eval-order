@@ -9,26 +9,6 @@ public class Customer {
 
     }
 
-    private void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
-    private void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    private void setEmail(String email) {
-        this.email = email;
-    }
-
-    private void setPhone(String phone) {
-        this.phone = phone;
-    }
-
-    private void setAddress(Address address) {
-        this.address = address;
-    }
-
     public void setCustomerId(int customerId) {
         this.customerId = customerId;
     }
@@ -68,41 +48,43 @@ public class Customer {
 
         public Customer build() {
             Customer newCustomer = new Customer();
-            newCustomer.setFirstName(firstName);
-            newCustomer.setLastName(lastName);
-            newCustomer.setEmail(email);
-            newCustomer.setPhone(phone);
-            newCustomer.setAddress(address);
-            newCustomer.setCustomerId(customerId);
+
+            newCustomer.firstName = firstName;
+            newCustomer.lastName = lastName;
+            newCustomer.email = email;
+            newCustomer.phone = phone;
+            newCustomer.address = address;
+            newCustomer.customerId = customerId;
+
             return newCustomer;
         }
 
-        public CustomerBuilder withFirstName(String firstName){
+        public CustomerBuilder withFirstName(String firstName) {
             this.firstName = firstName;
             return this;
         }
 
-        public CustomerBuilder withLastName(String lastName){
+        public CustomerBuilder withLastName(String lastName) {
             this.lastName = lastName;
             return this;
         }
 
-        public CustomerBuilder withEmail(String email){
+        public CustomerBuilder withEmail(String email) {
             this.email = email;
             return this;
         }
 
-        public CustomerBuilder withPhone(String phone){
+        public CustomerBuilder withPhone(String phone) {
             this.phone = phone;
             return this;
         }
 
-        public CustomerBuilder withAddress(Address address){
+        public CustomerBuilder withAddress(Address address) {
             this.address = address;
             return this;
         }
 
-        public CustomerBuilder withCustomerId(int customerId){
+        public CustomerBuilder withCustomerId(int customerId) {
             this.customerId = customerId;
             return this;
         }

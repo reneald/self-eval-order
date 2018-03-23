@@ -16,7 +16,7 @@ public class CustomerService {
         this.customerRepository = customerRepository;
     }
 
-    public Customer addCustomer(Customer customer) {
+    public Customer addCustomer(Customer customer) throws IllegalArgumentException {
         if (customer.getCustomerId() != 0) {
             throw new IllegalArgumentException("A new customer cannot have a Customer ID.");
         }
