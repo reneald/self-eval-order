@@ -30,17 +30,17 @@
         <dependencies>
             <!-- Internal Dependencies -->
             <dependency>
-                <groupId>be.thebest</groupId>
+                <groupId>be.reneald</groupId>
                 <artifactId>api</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>be.thebest</groupId>
+                <groupId>be.reneald</groupId>
                 <artifactId>service</artifactId>
                 <version>${project.version}</version>
             </dependency>
             <dependency>
-                <groupId>be.thebest</groupId>
+                <groupId>be.reneald</groupId>
                 <artifactId>domain</artifactId>
                 <version>${project.version}</version>
             </dependency>
