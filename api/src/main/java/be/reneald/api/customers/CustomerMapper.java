@@ -31,7 +31,6 @@ public class CustomerMapper {
                 .withEmail(customerDto.getEmail())
                 .withPhone(customerDto.getPhone())
                 .withAddress(addressMapper.toDomain(customerDto.getAddressDto()))
-                .withCustomerId(customerDto.getCustomerId())
                 .build();
     }
 }

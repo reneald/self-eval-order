@@ -42,7 +42,7 @@ public class Address {
             newAddress.houseNumber = houseNumber;
             newAddress.postCode = postCode;
             newAddress.city = city;
-            return null;
+            return newAddress;
         }
 
         public AddressBuilder withStreetName(String streetName) {

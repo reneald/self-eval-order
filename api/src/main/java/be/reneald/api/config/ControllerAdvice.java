@@ -1,4 +1,4 @@
-package be.reneald.api;
+package be.reneald.api.config;
 
 
 import org.apache.log4j.Logger;

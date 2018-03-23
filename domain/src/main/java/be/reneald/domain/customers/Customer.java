@@ -54,7 +54,6 @@ public class Customer {
             newCustomer.email = email;
             newCustomer.phone = phone;
             newCustomer.address = address;
-            newCustomer.customerId = customerId;
 
             return newCustomer;
         }
@@ -81,11 +80,6 @@ public class Customer {
 
         public CustomerBuilder withAddress(Address address) {
             this.address = address;
-            return this;
-        }
-
-        public CustomerBuilder withCustomerId(int customerId) {
-            this.customerId = customerId;
             return this;
         }
 
