@@ -6,6 +6,7 @@ import be.reneald.service.exceptions.ExistingEmailException;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.Map;
 
 @Named
 public class CustomerService {
@@ -25,6 +26,10 @@ public class CustomerService {
         }
 
         return customerRepository.addCustomer(customer);
+    }
+
+    public Map<Integer, Customer> getCustomerRepository() {
+        return customerRepository.getRepository();
     }
 
 }

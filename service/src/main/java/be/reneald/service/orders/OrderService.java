@@ -6,7 +6,6 @@ import be.reneald.domain.orders.OrderRepository;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.util.List;
-import java.util.Map;
 
 @Named
 public class OrderService {
@@ -39,7 +38,7 @@ public class OrderService {
         return orderRepository.getOrderById(orderId);
     }
 
-    public void throwExceptionWhenOrderIsNotFound(int orderId) throws IllegalArgumentException {
+    private void throwExceptionWhenOrderIsNotFound(int orderId) throws IllegalArgumentException {
         if (orderRepository.doesOrderIdExist(orderId)) {
             throw new IllegalArgumentException("Cannot find this order.");
         }
