@@ -8,6 +8,7 @@ import java.time.LocalDate;
 public class ItemGroup {
     private Item item;
     private int amount;
+    private LocalDate orderDate;
     private LocalDate shippingDate;
     private ShippingStatus shippingStatus;
 
@@ -30,6 +31,14 @@ public class ItemGroup {
 
     public int getAmount() {
         return amount;
+    }
+
+    public LocalDate getOrderDate() {
+        return orderDate;
+    }
+
+    public void setOrderDate(LocalDate orderDate) {
+        this.orderDate = orderDate;
     }
 
     public LocalDate getShippingDate() {

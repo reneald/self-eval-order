@@ -8,6 +8,7 @@ public class Item {
     private String itemDescription;
     private BigDecimal price;
     private int amount;
+    private StockResupplyUrgency stockResupplyUrgency;
 
     private Item() {
     }
@@ -52,10 +53,24 @@ public class Item {
         amount = amount;
     }
 
-    public enum Stock_Resupply_urgency {
-        STOCK_LOW,
-        STOCK_MEDIUM,
-        STOCK_HIGH
+    public enum StockResupplyUrgency {
+        STOCK_LOW(1),
+        STOCK_MEDIUM(2),
+        STOCK_HIGH(3);
+
+        private int urgency;
+
+        StockResupplyUrgency(int urgency) {
+            this.urgency = urgency;
+        }
+    }
+
+    public StockResupplyUrgency getStockResupplyUrgency() {
+        return stockResupplyUrgency;
+    }
+
+    public void setStockResupplyUrgency(StockResupplyUrgency stockResupplyUrgency) {
+        this.stockResupplyUrgency = stockResupplyUrgency;
     }
 
     public static class ItemBuilder {

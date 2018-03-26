@@ -14,18 +14,19 @@ public class Order {
     private BigDecimal totalPrice;
     private Customer customer;
     private int orderId;
-
-    private Order() {
-
-    }
+    private LocalDate orderDate;
 
     public Order(Customer customer, ItemGroup... items) {
         this.customer = customer;
         this.items = Arrays.asList(items);
+        Arrays.stream(items)
+                .peek(itemGroup -> itemGroup.setOrderDate(orderDate))
+                .close();
         updateTotalPrice();
     }
 
     public void addItemGroup(ItemGroup itemGroup) {
+        itemGroup.setOrderDate(orderDate);
         items.add(itemGroup);
         updateTotalPrice();
     }
@@ -50,16 +51,8 @@ public class Order {
         this.orderId = orderId;
     }
 
-    private void setItems(List<ItemGroup> items) {
-        this.items = items;
-    }
-
-    private void setTotalPrice(BigDecimal totalPrice) {
-        this.totalPrice = totalPrice;
-    }
-
-    private void setCustomer(Customer customer) {
-        this.customer = customer;
+    public LocalDate getOrderDate() {
+        return orderDate;
     }
 
     private void updateTotalPrice() {
