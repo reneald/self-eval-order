@@ -5,6 +5,8 @@ import be.reneald.domain.orders.OrderRepository;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.List;
+import java.util.Map;
 
 @Named
 public class OrderService {
@@ -21,5 +23,9 @@ public class OrderService {
         }
         orderRepository.addOrder(orderToAdd);
         return orderToAdd;
+    }
+
+    public List<Order> getOrdersByCustomer(int customerId) {
+        return orderRepository.getOrdersByCustomer(customerId);
     }
 }
