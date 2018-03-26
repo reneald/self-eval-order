@@ -12,6 +12,10 @@ public class Order {
     private Customer customer;
     private int orderId;
 
+    private Order() {
+
+    }
+
     public Order(Customer customer, ItemGroup... items) {
         this.customer = customer;
         this.items = Arrays.asList(items);
@@ -31,12 +35,28 @@ public class Order {
         return customer;
     }
 
+    public List<ItemGroup> getItems() {
+        return items;
+    }
+
     public int getOrderId() {
         return orderId;
     }
 
     public void setOrderId(int orderId) {
         this.orderId = orderId;
+    }
+
+    private void setItems(List<ItemGroup> items) {
+        this.items = items;
+    }
+
+    private void setTotalPrice(BigDecimal totalPrice) {
+        this.totalPrice = totalPrice;
+    }
+
+    private void setCustomer(Customer customer) {
+        this.customer = customer;
     }
 
     private void updateTotalPrice() {
@@ -46,4 +66,30 @@ public class Order {
         }
         this.totalPrice = newTotalPrice;
     }
+
+//    public static class OrderBuilder{
+//        private List<ItemGroup> items;
+//        private Customer customer;
+//
+//        public static OrderBuilder order() {
+//            return new OrderBuilder();
+//        }
+//
+//        public Order build() {
+//            Order newOrder = new Order();
+//            newOrder.items = items;
+//            newOrder.customer = customer;
+//            return newOrder;
+//        }
+//
+//        public OrderBuilder withItems(ItemGroup... items) {
+//            this.items = Arrays.asList(items);
+//            return this;
+//        }
+//
+//        public OrderBuilder withCustomer(Customer customer) {
+//            this.customer = customer;
+//            return this;
+//        }
+//    }
 }

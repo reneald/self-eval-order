@@ -19,9 +19,7 @@ public class ItemService {
         if (item.getItemId() != 0) {
             throw new IllegalArgumentException("New item cannot have an ID.");
         }
-
         itemRepository.addItem(item);
-
         return item;
     }
 }

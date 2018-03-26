@@ -24,8 +24,6 @@ public class ItemController {
     @PostMapping(consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
     @ResponseStatus(HttpStatus.OK)
     public ItemDto createItem(@RequestBody ItemDto itemDto) {
-        Item tempItem = itemMapper.toDomain(itemDto);
-        Item serviceItem = itemService.addItem(tempItem);
-        return itemMapper.toDto(serviceItem);
+        return itemMapper.toDto(itemService.addItem(itemMapper.toDomain(itemDto)));
     }
 }
