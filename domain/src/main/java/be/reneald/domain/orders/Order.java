@@ -1,10 +1,13 @@
 package be.reneald.domain.orders;
 
+import be.reneald.domain.customers.Address;
 import be.reneald.domain.customers.Customer;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class Order {
     private List<ItemGroup> items;
@@ -65,6 +68,16 @@ public class Order {
             newTotalPrice = newTotalPrice.add(item.calculatePrice());
         }
         this.totalPrice = newTotalPrice;
+    }
+
+    public List<ItemGroup> getItemGroupsByShippingDate(LocalDate date) {
+        return items.stream()
+                .filter(itemGroup -> itemGroup.getShippingDate().isEqual(date))
+                .collect(Collectors.toList());
+    }
+
+    public Address getShippingAddress() {
+        return customer.getAddress();
     }
 
 //    public static class OrderBuilder{

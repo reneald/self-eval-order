@@ -1,8 +1,10 @@
 package be.reneald.domain.orders;
 
+import be.reneald.domain.customers.Address;
 import be.reneald.domain.customers.Customer;
 
 import javax.inject.Named;
+import java.time.LocalDate;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
@@ -36,10 +38,19 @@ public class OrderRepository {
     }
 
     public Order reOrder(Order orderToReOrder) {
-        Order newOrder = new Order(orderToReOrder.getCustomer(), orderToReOrder.getItems().stream()
-                .toArray(ItemGroup[]::new));
+        Order newOrder = new Order(orderToReOrder.getCustomer(), orderToReOrder.getItems().toArray(new ItemGroup[0]));
         addOrder(newOrder);
         return newOrder;
+    }
+
+    public Map<ItemGroup, Address> getItemsShippingOnGivenDateWithAddress(LocalDate date) {
+        Map<ItemGroup, Address> itemGroupsShippingOnGivenDateWithAddress = new HashMap<>();
+        for (Order order : repository.values()) {
+            order.getItemGroupsByShippingDate(date).stream()
+                    .map(itemGroup -> itemGroupsShippingOnGivenDateWithAddress.put(itemGroup, order.getShippingAddress()))
+                    .close();
+        }
+        return itemGroupsShippingOnGivenDateWithAddress;
     }
 
     public Order getOrderById(int orderId) {

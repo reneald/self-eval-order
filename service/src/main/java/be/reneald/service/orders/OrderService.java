@@ -1,11 +1,15 @@
 package be.reneald.service.orders;
 
+import be.reneald.domain.customers.Address;
+import be.reneald.domain.orders.ItemGroup;
 import be.reneald.domain.orders.Order;
 import be.reneald.domain.orders.OrderRepository;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 @Named
 public class OrderService {
@@ -42,5 +46,9 @@ public class OrderService {
         if (orderRepository.doesOrderIdExist(orderId)) {
             throw new IllegalArgumentException("Cannot find this order.");
         }
+    }
+
+    public Map<ItemGroup, Address> getItemsShippingOnGivenDateWithAddress(LocalDate date) {
+        return orderRepository.getItemsShippingOnGivenDateWithAddress(date);
     }
 }
