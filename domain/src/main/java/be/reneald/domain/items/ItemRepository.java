@@ -23,4 +23,8 @@ public class ItemRepository {
         itemToAdd.setItemId(itemIdCounter++);
         return repository.put(itemToAdd.getItemId(), itemToAdd);
     }
+
+    public Item updateItem(Item itemToUpdate) {
+        return repository.put(itemToUpdate.getItemId(), itemToUpdate);
+    }
 }

@@ -15,11 +15,15 @@ public class ItemService {
         this.itemRepository = itemRepository;
     }
 
-    public Item addItem(Item item) throws  IllegalArgumentException {
-        if (item.getItemId() != 0) {
+    public Item addItem(Item itemToAdd) throws  IllegalArgumentException {
+        if (itemToAdd.getItemId() != 0) {
             throw new IllegalArgumentException("New item cannot have an ID.");
         }
-        itemRepository.addItem(item);
-        return item;
+        itemRepository.addItem(itemToAdd);
+        return itemToAdd;
+    }
+
+    public Item updateItem(Item itemToUpdate) {
+        return itemRepository.updateItem(itemToUpdate);
     }
 }
