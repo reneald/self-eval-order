@@ -17,11 +17,10 @@ public class ItemRepository {
 
     public Map<Integer, Item> getRepository() {
         return Collections.unmodifiableMap(repository);
-
     }
 
-    public Item addItem(Item item) {
-        item.setItemId(itemIdCounter++);
-        return repository.put(item.getItemId(), item);
+    public Item addItem(Item itemToAdd) {
+        itemToAdd.setItemId(itemIdCounter++);
+        return repository.put(itemToAdd.getItemId(), itemToAdd);
     }
 }

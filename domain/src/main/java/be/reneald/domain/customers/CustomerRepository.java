@@ -15,10 +15,10 @@ public class CustomerRepository {
         customerIdCounter = 1;
     }
 
-    public Customer addCustomer(Customer customer) {
-        customer.setCustomerId(customerIdCounter);
-        repository.put(customerIdCounter++, customer);
-        return customer;
+    public Customer addCustomer(Customer customerToAdd) {
+        customerToAdd.setCustomerId(customerIdCounter);
+        repository.put(customerIdCounter++, customerToAdd);
+        return customerToAdd;
     }
 
     public Map<Integer, Customer> getRepository() {
