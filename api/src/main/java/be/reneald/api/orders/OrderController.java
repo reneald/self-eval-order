@@ -29,4 +29,10 @@ public class OrderController {
                 .collect(Collectors.toList());
         return new OrderReport(customerId, orderDtoList);
     }
+
+    @PostMapping(path = "/{orderId}", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public OrderDto reOrder(@PathVariable int orderId) {
+        return orderMapper.toDto(orderService.reOrder(orderId));
+    }
 }

@@ -34,4 +34,19 @@ public class OrderRepository {
                 .map(entry -> entry.getValue())
                 .collect(Collectors.toList());
     }
+
+    public Order reOrder(Order orderToReOrder) {
+        Order newOrder = new Order(orderToReOrder.getCustomer(), orderToReOrder.getItems().stream()
+                .toArray(ItemGroup[]::new));
+        addOrder(newOrder);
+        return newOrder;
+    }
+
+    public Order getOrderById(int orderId) {
+        return repository.get(orderId);
+    }
+
+    public boolean doesOrderIdExist(int orderId) {
+        return orderId < orderIdCounter;
+    }
 }

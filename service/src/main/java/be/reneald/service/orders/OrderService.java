@@ -28,4 +28,20 @@ public class OrderService {
     public List<Order> getOrdersByCustomer(int customerId) {
         return orderRepository.getOrdersByCustomer(customerId);
     }
+
+    public Order reOrder(int orderIdToReorder) throws IllegalArgumentException {
+        throwExceptionWhenOrderIsNotFound(orderIdToReorder);
+        return orderRepository.reOrder(orderRepository.getOrderById(orderIdToReorder));
+    }
+
+    public Order getOrderById(int orderId) throws IllegalArgumentException {
+        throwExceptionWhenOrderIsNotFound(orderId);
+        return orderRepository.getOrderById(orderId);
+    }
+
+    public void throwExceptionWhenOrderIsNotFound(int orderId) throws IllegalArgumentException {
+        if (orderRepository.doesOrderIdExist(orderId)) {
+            throw new IllegalArgumentException("Cannot find this order.");
+        }
+    }
 }
