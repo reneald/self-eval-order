@@ -19,15 +19,10 @@ public class Order {
     public Order(Customer customer, ItemGroup... items) {
         this.customer = customer;
         this.items = Arrays.asList(items);
+        this.orderDate = LocalDate.now();
         Arrays.stream(items)
                 .peek(itemGroup -> itemGroup.setOrderDate(orderDate))
                 .close();
-        updateTotalPrice();
-    }
-
-    public void addItemGroup(ItemGroup itemGroup) {
-        itemGroup.setOrderDate(orderDate);
-        items.add(itemGroup);
         updateTotalPrice();
     }
 
@@ -72,30 +67,4 @@ public class Order {
     public Address getShippingAddress() {
         return customer.getAddress();
     }
-
-//    public static class OrderBuilder{
-//        private List<ItemGroup> items;
-//        private Customer customer;
-//
-//        public static OrderBuilder order() {
-//            return new OrderBuilder();
-//        }
-//
-//        public Order build() {
-//            Order newOrder = new Order();
-//            newOrder.items = items;
-//            newOrder.customer = customer;
-//            return newOrder;
-//        }
-//
-//        public OrderBuilder withItems(ItemGroup... items) {
-//            this.items = Arrays.asList(items);
-//            return this;
-//        }
-//
-//        public OrderBuilder withCustomer(Customer customer) {
-//            this.customer = customer;
-//            return this;
-//        }
-//    }
 }
