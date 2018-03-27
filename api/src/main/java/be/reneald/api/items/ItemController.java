@@ -7,6 +7,9 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
@@ -31,5 +34,14 @@ public class ItemController {
     @ResponseStatus(HttpStatus.OK)
     public ItemDto updateItem(@PathVariable int itemId, @RequestBody ItemDto itemDtoToUpdate) {
         return itemMapper.toDto(itemService.updateItem(itemMapper.toDomain(itemDtoToUpdate.withItemId(itemId))));
+    }
+
+    @GetMapping(path = "/resupply", consumes = APPLICATION_JSON_VALUE, produces = APPLICATION_JSON_VALUE)
+    @ResponseStatus(HttpStatus.OK)
+    public List<ItemDto> getItemsByResupplyUrgency() {
+        return itemService.getItemsOrderedByResupplyUrgency().values().stream()
+                .flatMap(List::stream)
+                .map(item -> itemMapper.toDto(item))
+                .collect(Collectors.toList());
     }
 }

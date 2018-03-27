@@ -7,10 +7,7 @@ import be.reneald.domain.orders.OrderRepository;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Map;
-import java.util.PriorityQueue;
-import java.util.SortedMap;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Named
@@ -37,13 +34,16 @@ public class ItemService {
     }
 
     public Map<Item.StockResupplyUrgency, List<Item>> getItemsOrderedByResupplyUrgency() {
-        //TODO sort this by urgency...
+        return new TreeMap<>(itemsByResupplyUrgency());
+    }
+
+    private Map<Item.StockResupplyUrgency, List<Item>> itemsByResupplyUrgency() {
         return itemRepository.getRepository().values().stream()
                 .peek(item -> item.setStockResupplyUrgency(calculateStockResupplyUrgency(item)))
                 .collect(Collectors.groupingBy(Item::getStockResupplyUrgency));
     }
 
-    public Item.StockResupplyUrgency calculateStockResupplyUrgency(Item item) {
+    private Item.StockResupplyUrgency calculateStockResupplyUrgency(Item item) {
         if (item.getAmount() < 3 || hasItemBeenOrderedInLast7Days(item)) {
             return Item.StockResupplyUrgency.STOCK_LOW;
         }
@@ -51,10 +51,9 @@ public class ItemService {
             return Item.StockResupplyUrgency.STOCK_MEDIUM;
         }
         return Item.StockResupplyUrgency.STOCK_HIGH;
-
     }
 
-    public boolean hasItemBeenOrderedInLast7Days(Item item) {
+    private boolean hasItemBeenOrderedInLast7Days(Item item) {
         return orderRepository.getRepository().values().stream()
                 .filter(order -> order.getOrderDate().plusDays(7).isAfter(LocalDate.now().minusDays(1)))
                 .filter(order -> order.getItems().stream()

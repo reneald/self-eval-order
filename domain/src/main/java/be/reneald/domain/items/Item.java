@@ -53,16 +53,10 @@ public class Item {
         amount = amount;
     }
 
-    public enum StockResupplyUrgency {
-        STOCK_LOW(1),
-        STOCK_MEDIUM(2),
-        STOCK_HIGH(3);
-
-        private int urgency;
-
-        StockResupplyUrgency(int urgency) {
-            this.urgency = urgency;
-        }
+    public enum StockResupplyUrgency{
+        STOCK_LOW,
+        STOCK_MEDIUM,
+        STOCK_HIGH
     }
 
     public StockResupplyUrgency getStockResupplyUrgency() {
