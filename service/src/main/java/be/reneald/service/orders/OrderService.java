@@ -37,11 +37,6 @@ public class OrderService {
         return orderRepository.reOrder(orderRepository.getOrderById(orderIdToReorder));
     }
 
-    public Order getOrderById(int orderId) throws IllegalArgumentException {
-        throwExceptionWhenOrderIsNotFound(orderId);
-        return orderRepository.getOrderById(orderId);
-    }
-
     private void throwExceptionWhenOrderIsNotFound(int orderId) throws IllegalArgumentException {
         if (orderRepository.doesOrderIdExist(orderId)) {
             throw new IllegalArgumentException("Cannot find this order.");

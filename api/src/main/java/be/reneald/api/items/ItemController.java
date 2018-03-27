@@ -1,12 +1,10 @@
 package be.reneald.api.items;
 
-import be.reneald.domain.items.Item;
 import be.reneald.service.items.ItemService;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import javax.inject.Inject;
-
 import java.util.List;
 import java.util.stream.Collectors;
 
