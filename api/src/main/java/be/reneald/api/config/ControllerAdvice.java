@@ -2,6 +2,7 @@ package be.reneald.api.config;
 
 
 import be.reneald.domain.orders.Order;
+import be.reneald.service.exceptions.ExistingEmailException;
 import org.apache.log4j.Logger;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -17,6 +18,15 @@ public class ControllerAdvice {
         return new ResponseEntity<>(
                 exception.getMessage(),
                 HttpStatus.BAD_REQUEST);
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<String> convertExistingEmailException(final ExistingEmailException exception) {
+        LOGGER.error(exception.getMessage());
+        return new ResponseEntity<>(
+                exception.getMessage(),
+                HttpStatus.BAD_REQUEST
+        );
     }
 
 }

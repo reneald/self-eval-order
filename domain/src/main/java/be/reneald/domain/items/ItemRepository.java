@@ -27,6 +27,4 @@ public class ItemRepository {
     public Item updateItem(Item itemToUpdate) {
         return repository.put(itemToUpdate.getItemId(), itemToUpdate);
     }
-
-
 }

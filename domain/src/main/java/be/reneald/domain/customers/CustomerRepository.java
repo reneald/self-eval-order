@@ -10,7 +10,7 @@ public class CustomerRepository {
     private Map<Integer, Customer> repository;
     private int customerIdCounter;
 
-    public CustomerRepository() {
+    CustomerRepository() {
         repository = new HashMap<>();
         customerIdCounter = 1;
     }

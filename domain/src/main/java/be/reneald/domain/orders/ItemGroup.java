@@ -33,10 +33,6 @@ public class ItemGroup {
         return amount;
     }
 
-    public LocalDate getOrderDate() {
-        return orderDate;
-    }
-
     public void setOrderDate(LocalDate orderDate) {
         this.orderDate = orderDate;
     }

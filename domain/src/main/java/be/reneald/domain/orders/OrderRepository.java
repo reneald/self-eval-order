@@ -1,14 +1,14 @@
 package be.reneald.domain.orders;
 
 import be.reneald.domain.customers.Address;
-import be.reneald.domain.customers.Customer;
 import be.reneald.domain.items.Item;
 
-import javax.inject.Inject;
 import javax.inject.Named;
 import java.time.LocalDate;
-import java.util.*;
-import java.util.function.Predicate;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Named
@@ -33,7 +33,7 @@ public class OrderRepository {
     public List<Order> getOrdersByCustomer(int customerId) {
         return repository.entrySet().stream()
                 .filter(entry -> entry.getValue().getCustomer().getCustomerId() == customerId)
-                .map(entry -> entry.getValue())
+                .map(Map.Entry::getValue)
                 .collect(Collectors.toList());
     }
 
@@ -51,14 +51,6 @@ public class OrderRepository {
                     .close();
         }
         return itemGroupsShippingOnGivenDateWithAddress;
-    }
-
-    public boolean wasItemOrderedInLast7Days(Item item) {
-        return getRepository().values().stream()
-                .filter(order -> order.getOrderDate().plusDays(7).isAfter(LocalDate.now().minusDays(1)))
-                .filter(order -> order.getItems().stream()
-                        .anyMatch(itemGroup -> itemGroup.getItem().equals(item)))
-                .count() > 1;
     }
 
     public Order getOrderById(int orderId) {

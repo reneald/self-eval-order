@@ -40,7 +40,6 @@ public class Customer {
     public static class CustomerBuilder {
         private String firstName, lastName, email, phone;
         private Address address;
-        private int customerId;
 
         public static CustomerBuilder customer() {
             return new CustomerBuilder();
@@ -82,6 +81,5 @@ public class Customer {
             this.address = address;
             return this;
         }
-
     }
 }

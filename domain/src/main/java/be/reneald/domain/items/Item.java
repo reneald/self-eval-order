@@ -37,22 +37,6 @@ public class Item {
         this.itemId = itemId;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
-    }
-
-    public void setItemDescription(String itemDescription) {
-        this.itemDescription = itemDescription;
-    }
-
-    public void setPrice(BigDecimal price) {
-        this.price = price;
-    }
-
-    public void setAmount(int amount) {
-        amount = amount;
-    }
-
     public enum StockResupplyUrgency{
         STOCK_LOW,
         STOCK_MEDIUM,
